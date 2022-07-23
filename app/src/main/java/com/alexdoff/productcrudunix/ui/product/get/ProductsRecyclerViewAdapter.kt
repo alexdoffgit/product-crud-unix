@@ -4,7 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.alexdoff.productcrudunix.data.obj.Product
+import com.alexdoff.productcrudunix.data.obj.ProductParcel
 import com.alexdoff.productcrudunix.databinding.FragmentProductSummaryBinding
 
 import com.alexdoff.productcrudunix.ui.product.get.placeholder.PlaceholderContent.PlaceholderItem
@@ -43,6 +45,18 @@ class ProductsRecyclerViewAdapter(
         fun bind(p: Product) {
             namaProduk.text = p.name
             hargaProduk.text = p.price
+            binding.root.setOnClickListener { view ->
+                val pp = ProductParcel(
+                    p.createdAt,
+                    p.description,
+                    p.name,
+                    p.pid,
+                    p.price,
+                    p.updatedAt
+                )
+                val action = ProductsFragmentDirections.actionProductsFragmentToProductDetail(pp)
+                Navigation.findNavController(view).navigate(action)
+            }
         }
     }
 

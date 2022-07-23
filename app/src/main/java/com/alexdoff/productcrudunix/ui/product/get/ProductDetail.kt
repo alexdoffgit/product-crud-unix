@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.navigation.fragment.navArgs
 import com.alexdoff.productcrudunix.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +24,8 @@ class ProductDetail : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val args: ProductDetailArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +39,17 @@ class ProductDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_product_detail, container, false)
+
+        val nama = view.findViewById<TextView>(R.id.namaProdukDetail)
+        val harga = view.findViewById<TextView>(R.id.hargaProdukDetail)
+        val desk = view.findViewById<TextView>(R.id.deskProdukDetail)
+
+        nama.text = args.product.name
+        harga.text = args.product.price
+        desk.text = args.product.description
+
+        return view
     }
 
     companion object {
