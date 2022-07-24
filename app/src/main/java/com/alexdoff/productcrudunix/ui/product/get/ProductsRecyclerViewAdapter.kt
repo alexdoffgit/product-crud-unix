@@ -8,6 +8,7 @@ import androidx.navigation.Navigation
 import com.alexdoff.productcrudunix.data.obj.Product
 import com.alexdoff.productcrudunix.data.obj.ProductParcel
 import com.alexdoff.productcrudunix.databinding.FragmentProductSummaryBinding
+import com.google.android.flexbox.FlexboxLayout
 
 /**
  * [RecyclerView.Adapter] that can display a [List<Product>].
@@ -39,11 +40,13 @@ class ProductsRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root) {
         private val namaProduk: TextView = binding.namaProduk
         private val hargaProduk: TextView = binding.hargaProduk
+        private val clickableText: FlexboxLayout = binding.textPart
+
 
         fun bind(p: Product) {
             namaProduk.text = p.name
             hargaProduk.text = p.price
-            binding.root.setOnClickListener { view ->
+            clickableText.setOnClickListener { view ->
                 val pp = ProductParcel(
                     p.createdAt,
                     p.description,

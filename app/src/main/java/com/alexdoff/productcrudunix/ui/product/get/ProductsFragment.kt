@@ -10,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.alexdoff.productcrudunix.R
 import com.alexdoff.productcrudunix.data.model.ProductViewModel
-import com.alexdoff.productcrudunix.data.repo.ProductRepo
-import com.alexdoff.productcrudunix.ui.product.get.placeholder.PlaceholderContent
+import com.alexdoff.productcrudunix.databinding.FragmentProductListBinding
 
 /**
  * A fragment representing a list of Items.
@@ -21,6 +21,9 @@ import com.alexdoff.productcrudunix.ui.product.get.placeholder.PlaceholderConten
 class ProductsFragment : Fragment() {
     private var columnCount = 1
     private lateinit var productViewModel: ProductViewModel
+    private var _binding: FragmentProductListBinding? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,26 +34,32 @@ class ProductsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
+        _binding = FragmentProductListBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         productViewModel = ViewModelProvider(requireActivity())[ProductViewModel::class.java]
         productViewModel.getAllProduct()
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                productViewModel.products.observe(viewLifecycleOwner) { p ->
-                    adapter = ProductsRecyclerViewAdapter(p)
-                }
+        with(binding.productList) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
+            }
+            productViewModel.products.observe(viewLifecycleOwner) { p ->
+                adapter = ProductsRecyclerViewAdapter(p)
             }
         }
+
+        binding.addProduct.setOnClickListener {
+            val action = ProductsFragmentDirections.actionProductsFragmentToProductCreate()
+            Navigation.findNavController(it).navigate(action)
+        }
+
         return view
     }
 

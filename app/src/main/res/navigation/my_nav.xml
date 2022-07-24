@@ -35,10 +35,18 @@
         android:id="@+id/productCreate"
         android:name="com.alexdoff.productcrudunix.ui.product.create.ProductCreate"
         android:label="fragment_product_create"
-        tools:layout="@layout/fragment_product_create" />
+        tools:layout="@layout/fragment_product_create" >
+        <action
+            android:id="@+id/action_productCreate_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productEdit"
         android:name="com.alexdoff.productcrudunix.ui.product.edit.ProductEdit"
         android:label="fragment_product_edit"
-        tools:layout="@layout/fragment_product_edit" />
+        tools:layout="@layout/fragment_product_edit" >
+        <action
+            android:id="@+id/action_productEdit_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
 </navigation>
