@@ -6,4 +6,6 @@
     <string name="text_view_desc">Description</string>
     <string name="insert_button">Insert</string>
     <string name="update_button">Update</string>
+
+    <string name="general_error">Something\'s Wrong</string>
 </resources>
