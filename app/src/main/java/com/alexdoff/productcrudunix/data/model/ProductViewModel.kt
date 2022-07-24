@@ -4,13 +4,14 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alexdoff.productcrudunix.data.obj.GetProductsResponse
+import com.alexdoff.productcrudunix.data.obj.Product
 import com.alexdoff.productcrudunix.data.repo.ProductRepo
 import kotlinx.coroutines.*
 
 private const val RTAG = "ResponseError"
 
 class ProductViewModel(private val repo: ProductRepo): ViewModel() {
-    val products = MutableLiveData<GetProductsResponse>()
+    val products = MutableLiveData<List<Product>>()
     private val ex = CoroutineExceptionHandler{_, throwable ->
         throwable.printStackTrace()
     }
@@ -21,7 +22,7 @@ class ProductViewModel(private val repo: ProductRepo): ViewModel() {
             val res = repo.getAllProduct()
             withContext(Dispatchers.Main) {
                 if(res.isSuccessful) {
-                    products.postValue(res.body())
+                    products.postValue(res.body()?.products)
                 } else {
                     onError(res.message().toString())
                 }
