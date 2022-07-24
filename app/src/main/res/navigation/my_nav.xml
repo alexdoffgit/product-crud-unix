@@ -48,5 +48,8 @@
         <action
             android:id="@+id/action_productEdit_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <argument
+            android:name="Product"
+            app:argType="com.alexdoff.productcrudunix.data.obj.ProductParcel" />
     </fragment>
 </navigation>
