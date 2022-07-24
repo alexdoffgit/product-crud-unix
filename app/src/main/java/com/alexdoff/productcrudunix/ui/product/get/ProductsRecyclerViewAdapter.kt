@@ -9,10 +9,8 @@ import com.alexdoff.productcrudunix.data.obj.Product
 import com.alexdoff.productcrudunix.data.obj.ProductParcel
 import com.alexdoff.productcrudunix.databinding.FragmentProductSummaryBinding
 
-import com.alexdoff.productcrudunix.ui.product.get.placeholder.PlaceholderContent.PlaceholderItem
-
 /**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
+ * [RecyclerView.Adapter] that can display a [List<Product>].
  * TODO: Replace the implementation with code for your data type.
  */
 class ProductsRecyclerViewAdapter(
