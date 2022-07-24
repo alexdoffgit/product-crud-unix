@@ -39,6 +39,21 @@ class ProductViewModel(private val repo: ProductRepo): ViewModel() {
                 if (res.isSuccessful) {
                     success.postValue(true)
                 } else {
+                    success.postValue(false)
+                    onError(res.message().toString())
+                }
+            }
+        }
+    }
+
+    fun deleteProduct(id: String) {
+        job = CoroutineScope(Dispatchers.IO + ex).launch {
+            val res = repo.deleteProduct(id)
+            withContext(Dispatchers.Main) {
+                if(res.isSuccessful) {
+                    success.postValue(true)
+                } else {
+                    success.postValue(false)
                     onError(res.message().toString())
                 }
             }

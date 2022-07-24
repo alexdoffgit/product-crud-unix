@@ -11,4 +11,7 @@ class ProductRepo(private val client: ProductApiInterface) {
     suspend fun createProduct(p: PostAndPutProductRequest): Response<PostProductResponse> {
         return client.createProduct(p)
     }
+    suspend fun deleteProduct(id: String): Response<String> {
+        return client.deleteProduct(id)
+    }
 }

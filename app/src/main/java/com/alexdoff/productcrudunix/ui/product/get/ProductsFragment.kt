@@ -51,7 +51,7 @@ class ProductsFragment : Fragment() {
                 else -> GridLayoutManager(context, columnCount)
             }
             productViewModel.products.observe(viewLifecycleOwner) { p ->
-                adapter = ProductsRecyclerViewAdapter(p)
+                adapter = ProductsRecyclerViewAdapter(p, productViewModel)
             }
         }
 
