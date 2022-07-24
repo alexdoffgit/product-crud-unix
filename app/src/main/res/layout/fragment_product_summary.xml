@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/text_part"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:flexDirection="column"
+        app:layout_flexGrow="1"
+        app:justifyContent="center"
+        app:alignItems="stretch">
         <TextView
             android:id="@+id/namaProduk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"
-            tools:text="nama" />
-
+            tools:text="nama"
+            android:layout_marginStart="20dp" />
         <TextView
             android:id="@+id/hargaProduk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"
-            tools:text="2000" />
-    </LinearLayout>
+            tools:text="harga"
+            android:layout_marginStart="20dp" />
+    </com.google.android.flexbox.FlexboxLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/go_to_update"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/ic_edit"
+        app:iconGravity="start|end"
+        android:backgroundTint="@color/teal_700" />
+    <Button
+        android:id="@+id/delete_product"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/ic_delete"
+        app:iconGravity="start|end"
+        android:backgroundTint="@color/red" />
+</com.google.android.flexbox.FlexboxLayout>
