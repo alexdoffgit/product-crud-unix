@@ -12,6 +12,12 @@
         <action
             android:id="@+id/action_productsFragment_to_productDetail"
             app:destination="@id/productDetail" />
+        <action
+            android:id="@+id/action_productsFragment_to_productCreate"
+            app:destination="@id/productCreate" />
+        <action
+            android:id="@+id/action_productsFragment_to_productEdit"
+            app:destination="@id/productEdit" />
     </fragment>
     <fragment
         android:id="@+id/productDetail"
@@ -25,4 +31,14 @@
             android:name="product"
             app:argType="com.alexdoff.productcrudunix.data.obj.ProductParcel" />
     </fragment>
+    <fragment
+        android:id="@+id/productCreate"
+        android:name="com.alexdoff.productcrudunix.ui.product.create.ProductCreate"
+        android:label="fragment_product_create"
+        tools:layout="@layout/fragment_product_create" />
+    <fragment
+        android:id="@+id/productEdit"
+        android:name="com.alexdoff.productcrudunix.ui.product.edit.ProductEdit"
+        android:label="fragment_product_edit"
+        tools:layout="@layout/fragment_product_edit" />
 </navigation>
