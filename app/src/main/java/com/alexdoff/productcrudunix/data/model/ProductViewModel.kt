@@ -60,6 +60,20 @@ class ProductViewModel(private val repo: ProductRepo): ViewModel() {
         }
     }
 
+    fun updateProduct(id: String, p: PostAndPutProductRequest) {
+        job = CoroutineScope(Dispatchers.IO + ex).launch {
+            val res = repo.updateProduct(id, p)
+            withContext(Dispatchers.Main) {
+                if (res.isSuccessful) {
+                    success.postValue(true)
+                } else {
+                    success.postValue(false)
+                    onError(res.message().toString())
+                }
+            }
+        }
+    }
+
     fun cancelRequest() {
         job?.cancel()
     }
